@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tax Calculator</title>
-    <link rel="../stylesheet" href="style.css">
+    <link rel="stylesheet" href="../static/styles.css">
     <script src="../static/script.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
@@ -23,34 +23,64 @@
 <!-- main content -->
     <div class="container my-4">
         <h1 class="text-center">UK Tax Calculator</h1>
-        <h2 class="text-left my-4">Income taxes</h2>
-        <div class="row justify-content-center my-4">
-            <div class="col-6 col-lg-4">
+        <div class="row m-2 justify-content-center">
+            <div class="col-12 col-md-4">
+                <h2 class="my-4">Income taxes</h2>
                 <form method="post" id="tax-form">
                     <label class="form-label" for="income">Annual Income:</label>
                     <input class="form-control" id="income" name="income" required autocomplete="off" type="currency">
-                    <button class="btn btn-primary my-2" id="submit">Go</button>
+                    <button class="btn btn-primary my-2" id="submit_income">Go</button>
                 </form>
             </div>
-            <div class="col-6">
-                <h6 id="overall_tax_rate"></h6>
-                <h6 id="total_tax"></h6>
-                <canvas class=mb-2" id="pieChart" width="100" height="100"></canvas>
+            <div class="col-12 col-md-8 text-center my-2">
+                <h4 id="overall_tax_rate"></h4>
+                <h4 id="total_tax"></h4>
+                <canvas class=mb-2" id="pieChart" width="100" height="0"></canvas>
+                <!--
                 <p id="income_tax"></p>
                 <p id="ni"></p>
-                
                 <p id="net_income"></p>
                 <p id="take_home"></p>
+                -->
             </div>
         </div>
-        <!--
-        <div class="row">
-            <h2 class="text-left my-4">Consumption taxes</h2>
-            <p>How much do you spend in a month?</p>
-            <p>and how much of this is on groceries</p>
-            <p>and how much is on rent</p>
+        
+        <div class="row m-2">
+            <div class="col col-md-4">
+                <h2 class="my-4">VAT</h2>
+                <form id="vat-form">
+                    <div class="mb-2">
+                        <label class="form-label" for="month">What is your monthly budget (excluding energy and rent/mortgage)?</label>
+                        <input class="form-control" id="month" name="month" required autocomplete="off" type="currency">
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label" for="groceries">Approximately how much of this is on groceries?</label>
+                        <input class="form-control" id="groceries" name="other" required autocomplete="off" type="currency">
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label" for="petrol">How much of this is on petrol?</label>
+                        <input class="form-control" id="petrol" name="petrol" required autocomplete="off" type="currency">
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label" for="energy">How much do you spend on energy (gas and electricity) per month?</label>
+                        <input class="form-control" id="energy" name="other" required autocomplete="off" type="currency">
+                    </div>
+                    
+                    <button class="btn btn-primary my-2" id="submit_vat">Go</button>
+                </form>
+                <div class="col-12 text-center my-2">
+                    <h4>Total VAT</h4>
+                    <h6 id="vat_month"></h6>
+                    <h6 id="vat_year"></h6>
+                </div>
+            </div>
         </div>
-        -->
+        <div class="row my-4">
+            <div class="col">
+                <h3 id="income_and_vat"></h3>
+            </div>
+        </div>
+        
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
