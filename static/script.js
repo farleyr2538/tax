@@ -61,21 +61,6 @@ function getIncome(event) {
     take_home = (gross_income - total_income_tax);
     overall_tax_rate = ((total_income_tax / gross_income) * 100).toFixed(1);
 
-    // log
-    console.log("Gross Income: £" + gross_income.toLocaleString());
-    console.log("Income Tax: £" + income_tax_due.toLocaleString());
-    console.log("NI: £" + ni_due.toLocaleString());
-    console.log("Total Income Tax: £" + total_income_tax.toLocaleString());
-    console.log("Take Home: £" + take_home.toLocaleString());
-    console.log("Overall Tax Rate: " + overall_tax_rate + "%");
-
-    /*
-    // insert to HTML
-    income_tax.innerHTML = "Income Tax: £" + income_tax_due.toLocaleString();
-    ni.innerHTML = "NI: £" + ni_due.toLocaleString();
-    net_income.innerHTML = "Take home pay: £" + take_home.toLocaleString();
-    */
-
     total_tax.innerHTML = "Total Income Tax: £" + total_income_tax.toLocaleString();
     overall_tax_rate_element.innerHTML = "Overall Tax Rate: " + overall_tax_rate.toLocaleString() + "%";
     
@@ -131,11 +116,6 @@ function getVAT(event) {
     const petrol = parseFloat(document.getElementById("petrol").value);
     const month = parseFloat(document.getElementById("month").value);
 
-    console.log("Groceries: £" + groceries.toLocaleString());
-    console.log("Energy: £" + energy.toLocaleString());
-    console.log("month: £" + month.toLocaleString());
-    console.log("Petrol: £" + petrol.toLocaleString());
-
     const vat_energy = energy - (energy / 1.05);
     const vat_petrol = petrol * 0.52;
     const payable_at_20 = month - groceries - petrol;
@@ -145,23 +125,75 @@ function getVAT(event) {
     console.log("Total VAT: £" + total_vat.toLocaleString());
 
     // insert to HTML
+    const vat_header_element = document.getElementById("vat_header");
+    vat_header_element.innerHTML = "You pay approximately...";
     const vat_month_element = document.getElementById("vat_month");
-    vat_month_element.innerHTML = "£" + total_vat.toLocaleString() + " per month";
+    vat_month_element.innerHTML = "£" + total_vat.toLocaleString() + " VAT per month";
     const vat_year_element = document.getElementById("vat_year");
-    vat_year_element.innerHTML = "£" + (total_vat * 12).toLocaleString() + " per year";
+    vat_year_element.innerHTML = "£" + (total_vat * 12).toLocaleString() + " VAT per year";
 
     const vat_and_income = total_vat + total_income_tax;
     document.getElementById("income_and_vat").innerHTML = "Total tax (income tax + VAT): £" + vat_and_income.toLocaleString();
+    getSpending(vat_and_income);
+}
+
+function getSpending(tax) {
+  const spending_data_22_23 = {
+    "health" : (0.183 * tax),
+    "social security (pensioners)" : (0.122 * tax),
+    "social security (working age and children)" : (0.102 * tax),
+    "education" : (0.091 * tax),
+    "net debt interest" : (0.084 * tax),
+    "defence" : (0.048 * tax),
+    "transport" : (0.038 * tax),
+    "public order and safety" : (0.038 * tax),
+    "long-term care" : (0.024 * tax),
+    "housing and community amenities" : (0.015 * tax),
+    "overseas aid" : (0.011 * tax),
+    "other" : (0.24 * tax)
+  }
+  const spending_data = {
+    labels: Object.keys(spending_data_22_23),
+    datasets: [{
+      label: 'Spending breakdown',
+      data: Object.values(spending_data_22_23),
+      backgroundColor: [
+        'rgb(255, 99, 132)',
+        'rgb(54, 162, 235)',
+        'rgb(255, 205, 86)',
+        'rgb(75, 192, 192)',
+        'rgb(153, 102, 255)',
+        'rgb(255, 159, 64)',
+        'rgb(201, 203, 207)',
+        'rgb(255, 205, 86)',
+        'rgb(75, 192, 192)',
+        'rgb(201, 203, 207)',
+      ]
+    }]
+  };
+  const spending_config = {
+    type: 'pie',
+    data: spending_data,
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'top'
+        },
+        title: {
+          display: true,
+          text: 'Spending breakdown'
+        }
+      }
+    }
+  };
+  const spending_chart = document.getElementById('spendingChart').getContext('2d');
+  spending_chart = new Chart(spending_chart, spending_config);
 }
 
 document.getElementById("submit_income").addEventListener('click', getIncome);
 document.getElementById("submit_vat").addEventListener('click', getVAT);
 
-/*
-const income_tax = document.getElementById("income_tax");
-const ni = document.getElementById("ni");
-const net_income = document.getElementById("net_income");
-*/
-
 const total_tax = document.getElementById("total_tax");
 const overall_tax_rate_element = document.getElementById("overall_tax_rate");
+
