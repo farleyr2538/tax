@@ -6,3 +6,21 @@ p {
 input {
     margin-bottom: 4px;
 }
+
+.info_bubble {
+    border-radius: 50%;
+    background-color: rgb(98, 119, 239);
+    height: 125px;
+    width: 125px;
+    color: white;
+    font-size: 20px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    transform: scale(0);
+    transition: 
+        transform 0.75s ease;
+}
+
+
