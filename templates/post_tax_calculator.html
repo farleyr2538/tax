@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+
+{% block title %}Post-Tax Calculator{% endblock %}
+
+{% block script %}
+    <script type="module" src="../static/js/script.js" defer></script>
+{% endblock %}
+
+{% block content %}
+
+    <!-- main content -->
+    <div class="container my-4">
+        <div class="row">
+            <div class="col">
+                <form>
+                    <label class="form-label" for="income">Annual Income:</label>
+                    <input class="form-control" id="income" name="income" required autocomplete="off" type="currency">
+                    <button class="btn btn-primary my-2" id="submit_income">Go</button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">per month</th>
+                            <th scope="col">per year</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table_body">
+                        <!-- data will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
