@@ -1,0 +1,91 @@
+{% extends 'layout.html' %}
+
+{% block title %}test{% endblock %}
+
+{% block script %}<script type="module" src="../static/js/test.js"></script>{% endblock %}
+
+{% block content %}
+
+<div id="scroll-container" class="scroll-container">
+    <div class="scroll-row">
+        <div>
+            <h2 class="my-4">Income taxes</h2>
+            <form class="p-4 bg-light rounded" method="post" id="tax-form">
+                <label class="form-label" for="income">Annual Income:</label>
+                <input class="form-control" id="income" name="income" required autocomplete="off" type="currency">
+                <button class="btn btn-primary my-2" id="submit_income">Go</button>
+            </form>
+            <div id="tax_data_container" class="mt-4" style="display: none; justify-content: space-evenly; align-items: center;">
+                <div style="justify-content: center;">
+                    <div class="info_bubble mb-2" id="overall_tax_rate"></div>
+                    <p>Overall tax rate</p>
+                </div>
+                <div>
+                    <div class="info_bubble mb-2" id="total_tax"></div>
+                    <p>Total tax</p>
+                </div>
+            </div>
+        </div>
+        <div class="text-center my-2">     
+            <canvas id="pieChart" width="100" height="0"></canvas>
+        </div>
+    </div>
+    <div class="scroll-row">
+        <div>
+            <h2 class="my-4">VAT</h2>
+            <form class="p-4 bg-light rounded" id="vat-form">
+                <div class="mb-2">
+                    <label class="form-label" for="month">What is your monthly budget (excluding energy and rent/mortgage)?</label>
+                    <input class="form-control" id="month" name="month" required autocomplete="off" type="currency">
+                </div>
+                <div class="mb-2">
+                    <label class="form-label" for="groceries">Approximately how much of this is on groceries?</label>
+                    <input class="form-control" id="groceries" name="other" required autocomplete="off" type="currency">
+                </div>
+                <div class="mb-2">
+                    <label class="form-label" for="petrol">How much of this is on petrol?</label>
+                    <input class="form-control" id="petrol" name="petrol" required autocomplete="off" type="currency">
+                </div>
+                <div class="mb-2">
+                    <label class="form-label" for="energy">How much do you spend on energy (gas and electricity) per month?</label>
+                    <input class="form-control" id="energy" name="other" required autocomplete="off" type="currency">
+                </div>
+                
+                <button class="btn btn-primary my-2" id="submit_vat">Go</button>
+            </form>
+        </div>
+        <div class="text-center my-2">
+            <h6 id="vat_header"></h6>
+            <h4 id="vat_month"></h4>
+            <h4 id="vat_year"></h4>
+        </div>
+    </div>
+    <div class="scroll-row">
+        <div class="text-center">
+            <h3 id="income_and_vat"></h3>
+            <p id="income_and_vat_note" ></p>
+        </div>
+    </div>
+    <div class="scroll-row">
+        <div>
+            <h2 class="my-2">Where does it go?</h2>
+        </div>
+        <div>
+            <canvas id="spendingChart" width="200" height="200"></canvas>
+        </div>
+    </div>
+  
+    <!-- Arrows -->
+    <button id="scroll-up" class="arrow-button up">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-circle-fill" viewBox="0 0 16 16">
+            <path d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0m-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707z"/>
+        </svg>
+    </button>
+    <button id="scroll-down" class="arrow-button down">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle-fill" viewBox="0 0 16 16">
+            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z"/>
+        </svg>
+    </button>
+  </div>
+
+{% endblock %}

@@ -1,5 +1,3 @@
-
-
 export function calculateIncomeTax(income) {
     let tax_due = 0;
     if (income > 12570 && income <= 50270) {

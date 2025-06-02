@@ -23,4 +23,42 @@ input {
         transform 0.75s ease;
 }
 
+html, body {
+  height: 100%;
+  margin: 0;
+  scroll-behavior: smooth;
+}
 
+.scroll-container {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  position: relative;
+}
+
+.scroll-row {
+  height: 100vh;
+  scroll-snap-align: start;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* font-size: 2rem; */
+}
+
+.arrow-button {
+  position: fixed;
+  right: 1rem;
+  background: white;
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+  z-index: 10;
+}
+
+.arrow-button.up {
+  top: 1rem;
+  display: none;
+}
+
+.arrow-button.down {
+  bottom: 1rem;
+}

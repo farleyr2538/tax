@@ -178,3 +178,43 @@ document.getElementById("submit_vat").addEventListener('click', getVAT);
 
 const total_tax = document.getElementById("total_tax");
 const overall_tax_rate_element = document.getElementById("overall_tax_rate");
+
+const container = document.getElementById('scroll-container');
+const rows = document.querySelectorAll('.scroll-row');
+const upBtn = document.getElementById('scroll-up');
+const downBtn = document.getElementById('scroll-down');
+
+function getCurrentIndex() {
+return Math.round(container.scrollTop / window.innerHeight);
+}
+
+function updateArrows() {
+const index = getCurrentIndex();
+upBtn.style.display = index > 0 ? 'block' : 'none';
+downBtn.style.display = index < rows.length - 1 ? 'block' : 'none';
+}
+
+function scrollToRow(index) {
+container.scrollTo({
+    top: index * window.innerHeight,
+    behavior: 'smooth'
+});
+}
+
+upBtn.addEventListener('click', () => {
+const currentIndex = getCurrentIndex();
+if (currentIndex > 0) scrollToRow(currentIndex - 1);
+});
+
+downBtn.addEventListener('click', () => {
+const currentIndex = getCurrentIndex();
+if (currentIndex < rows.length - 1) scrollToRow(currentIndex + 1);
+});
+
+container.addEventListener('scroll', () => {
+clearTimeout(container._scrollTimeout);
+container._scrollTimeout = setTimeout(updateArrows, 100);
+});
+
+// On load
+updateArrows();
