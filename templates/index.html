@@ -9,15 +9,15 @@
     <!-- main content -->
     <div class="container my-4">
         <h1 class="text-center">UK Tax Calculator</h1>
-        <div class="row mx-2 my-4 justify-content-evenly">
+        <div class="row py-4 justify-content-center">
             <div class="col-12 col-lg-4">
                 <h2 class="my-4">Income taxes</h2>
-                <form class="p-4 bg-light rounded" method="post" id="tax-form">
+                <form class="py-4" method="post" id="tax-form">
                     <label class="form-label" for="income">Annual Income:</label>
                     <input class="form-control" id="income" name="income" required autocomplete="off" type="currency">
                     <button class="btn btn-primary my-2" id="submit_income">Go</button>
                 </form>
-                <div id="tax_data_container" class="mt-4" style="display: none; justify-content: space-evenly; align-items: center;">
+                <div id="tax_data_container" class="py-4" style="display: none; justify-content: space-evenly; align-items: center;">
                     <div style="justify-content: center;">
                         <div class="info_bubble mb-2" id="overall_tax_rate"></div>
                         <p>Overall tax rate</p>
@@ -79,6 +79,7 @@
             <div class="col-12 col-md-6">
                 <canvas id="spendingChart" width="200" height="200"></canvas>
             </div>
+        </div>
     </div>
     
 {% endblock %}
