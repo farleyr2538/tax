@@ -12,6 +12,7 @@ let overall_tax_rate = 0;
 let pieChart = null;
 
 function getIncome(event) {
+  
     //pieChart.setAttribute('height', '100');
 
     event.preventDefault(); // Prevent the form from submitting
@@ -74,33 +75,44 @@ function getIncome(event) {
         const ctx = document.getElementById('pieChart').getContext('2d');
         pieChart = new Chart(ctx, config);
 
-        const size_multiplier = overall_tax_rate * 6;
+        const size_multiplier = overall_tax_rate * 10;
 
         document.getElementById('tax_data_container').style.display = 'flex';
         document.querySelectorAll('.info_bubble').forEach((bubble) => {
             bubble.style.transform = `scale(0.5)`;
+            bubble.style.transition = 'transform 0.3s ease-in-out';
             requestAnimationFrame(() => {
-                bubble.style.transform = `scale(1)`;
+                bubble.style.transform = `scale(1.0)`;
             });
         });
-        
     }
-
 }
 
 function getVAT(event) {
     event.preventDefault(); // Prevent the form from submitting
     
+    // get values
     const groceries = parseFloat(document.getElementById("groceries").value);
     const energy = parseFloat(document.getElementById("energy").value);
     const petrol = parseFloat(document.getElementById("petrol").value);
     const month = parseFloat(document.getElementById("month").value);
 
+    // check for valid input
+    if (isNaN(groceries) || isNaN(energy) || isNaN(petrol) || isNaN(month)) {
+        alert("Please enter valid numbers for all fields.");
+        return;
+    } else if (groceries < 0 || energy < 0 || petrol < 0 || month < 0) {
+        alert("Please enter positive numbers for all fields.");
+        return;
+    } 
+
+    // calculate VAT
     const vat_energy = energy - (energy / 1.05);
     const vat_petrol = petrol * 0.52;
     const payable_at_20 = month - groceries - petrol;
     const vat_other = payable_at_20 - (payable_at_20 / 1.20);
 
+    // print values
     const total_vat = vat_energy + vat_petrol + vat_other;
     console.log("Total VAT: £" + total_vat.toLocaleString());
 
@@ -121,10 +133,15 @@ function getVAT(event) {
     const vat_and_income_formatted = new Intl.NumberFormat('en-GB', {style: 'currency', currency: 'GBP'}).format(vat_and_income);
     document.getElementById("income_and_vat").innerHTML = "Total Annual Tax: " + vat_and_income_formatted;
     document.getElementById('income_and_vat_note').innerHTML = "(income tax, national insurance, and VAT combined)";
+
+    const spending_header_element = document.getElementById("spending_header");
+    spending_header_element.innerText = "Where does it go?";
+
     getSpending(vat_and_income);
 }
 
 function getSpending(tax) {
+
   const spending_data_22_23 = {
     "health" : (0.183 * tax),
     "social security (pensioners)" : (0.122 * tax),
@@ -139,7 +156,6 @@ function getSpending(tax) {
     "overseas aid" : (0.011 * tax),
     "other" : (0.24 * tax)
   }
-
 
   const spending_data = {
     labels: Object.keys(spending_data_22_23),
