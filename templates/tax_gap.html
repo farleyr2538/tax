@@ -3,7 +3,9 @@
 {% block title %}Post-Tax Calculator{% endblock %}
 
 {% block script %}
-    <script type="module" src="../static/js/post_tax_calculator.js" defer></script>
+    <script type="module" src="../static/js/tax_gap.js" defer></script>
+    <!--plotly-->
+    <script src="https://cdn.plot.ly/plotly-3.0.1.min.js" charset="utf-8"></script>
 {% endblock %}
 
 {% block content %}
@@ -19,7 +21,7 @@
                 </form>
             </div>
         </div>
-        -->
+        
         <div class="row justify-content-center">
             <div class="col-6">
                 <table class="table">
@@ -30,21 +32,22 @@
                         </tr>
                     </thead>
                     <tbody id="table_body">
-                        <!-- data will be populated here -->
+                        data to be populated here
                     </tbody>
                 </table>
             </div>
         </div>
-        <div class="row justify-content-center">
-            <div class="col-10">
-                <canvas id="graph_div" width="100" height="100"></canvas>
-            </div>
+        -->
+        <div class="d-flex justify-content-center">
+            <div id="graph_div" style="width: 800px; height: 600px;"></div>
         </div>
+        <!--
         <div class="row justify-content-center">
             <div class="col-10">
                 <canvas id="lineChart" width="100" height="0"></canvas>
             </div>
         </div>
+        -->
     </div>
 
 {% endblock %}

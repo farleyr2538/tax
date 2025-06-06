@@ -27,21 +27,40 @@ const post_tax_array = post_tax();
 var pre_tax_trace = {
     x : pre_tax,
     y : pre_tax,
-    type : 'scatter'
-}
+    fill : 'tonexty',
+    fillcolor : 'rgba(0, 100, 80, 0.2)',
+    type : 'scatter',
+    name : 'Pre-tax'
+};
 
 var post_tax_trace = {
     x : pre_tax,
     y : post_tax_array,
-    type : 'scatter'
+    fill : 'none',
+    type : 'scatter',
+    name : 'Post-tax'
+};
+
+var pre_post_tax = [post_tax_trace, pre_tax_trace];
+
+var layout = {
+    title : {
+        text : "Gross vs Post-Tax Income"
+    }
 }
 
-var pre_post_tax = [pre_tax_trace, post_tax_trace];
+const graph_div = document.getElementById('graph_div');
+if (graph_div != null) {
+    console.log("graph_div found")
+} else {
+    console.log("graph_div not found")
+}
 
-const target_div = document.getElementById('graph_div');
-Plotly.newPlot(target_div, pre_post_tax);
+Plotly.newPlot('graph_div', pre_post_tax, layout);
 
 // chart.js implementation
+
+/*
 
 const config = {
     type : 'line',
@@ -66,3 +85,5 @@ const config = {
 
 const ctx = document.getElementById('lineChart').getContext('2d');
 new Chart(ctx, config);
+
+*/
