@@ -1,9 +1,9 @@
-/* div blueprint lines 
+/* div blueprint lines */
 div {
   outline: blue dotted;
   outline-width: 1px;
 }
-*/
+
 
 p {
     margin-top: 0px;

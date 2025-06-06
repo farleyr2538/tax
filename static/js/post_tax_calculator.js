@@ -13,8 +13,35 @@ function post_tax() {
     return new_array;
 }
 
-const pre_tax = [0, 10000, 20000, 30000, 40000, 50000, 60000, 70000, 80000, 90000, 100000, 110000, 120000, 130000, 140000, 150000];
+const pre_tax = [];
+
+// populate pre-tax
+for (let x = 0; x <= 150000; x = x + 1000) {
+    pre_tax.push(x)
+}
+
 const post_tax_array = post_tax();
+
+// plotly implementation
+
+var pre_tax_trace = {
+    x : pre_tax,
+    y : pre_tax,
+    type : 'scatter'
+}
+
+var post_tax_trace = {
+    x : pre_tax,
+    y : post_tax_array,
+    type : 'scatter'
+}
+
+var pre_post_tax = [pre_tax_trace, post_tax_trace];
+
+const target_div = document.getElementById('graph_div');
+Plotly.newPlot(target_div, pre_post_tax);
+
+// chart.js implementation
 
 const config = {
     type : 'line',
