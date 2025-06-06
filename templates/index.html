@@ -22,7 +22,7 @@
                     <div class="row align-items-end">
                         <div class="col">
                             <label class="form-label" for="income">Annual Income:</label>
-                            <input class="form-control" id="income" name="income" required autocomplete="off" type="currency">
+                            <input class="form-control" id="income" name="income" required autocomplete="off" type="number">
                         </div>
                         <div class="col-2">
                            <button class="btn btn-primary" id="submit_income">Go</button>
@@ -51,32 +51,32 @@
                 <form class="p-4 bg-light rounded" id="vat-form">
                     <div class="mb-2">
                         <label class="form-label" for="month">How much do you spend in a month? (excluding energy and rent/mortgage)</label>
-                        <input class="form-control" id="month" name="month" required autocomplete="off" type="currency">
+                        <input class="form-control" id="month" name="month" required autocomplete="off" type="number">
                     </div>
                     <div class="mb-2">
                         <label class="form-label" for="groceries">Approximately how much of this is on groceries?</label>
-                        <input class="form-control" id="groceries" name="other" required autocomplete="off" type="currency">
+                        <input class="form-control" id="groceries" name="other" required autocomplete="off" type="number">
                     </div>
                     <div class="mb-2">
                         <label class="form-label" for="petrol">How much of this is on petrol?</label>
-                        <input class="form-control" id="petrol" name="petrol" required autocomplete="off" type="currency">
+                        <input class="form-control" id="petrol" name="petrol" required autocomplete="off" type="number">
                     </div>
                     <div class="mb-2">
                         <label class="form-label" for="energy">How much do you spend on energy (gas and electricity) per month?</label>
-                        <input class="form-control" id="energy" name="other" required autocomplete="off" type="currency">
+                        <input class="form-control" id="energy" name="other" required autocomplete="off" type="number">
                     </div>
                     
                     <button class="btn btn-primary my-2" id="submit_vat">Go</button>
                 </form>
             </div>
-            <div class="col-12 col-lg-4 text-center my-2">
+            <div class="col-12 col-lg-4 text-center pt-4">
                 <h6 id="vat_header"></h6>
                 <h4 id="vat_month"></h4>
                 <h4 id="vat_year"></h4>
             </div>
         </div>
 
-        <div class="row my-5">
+        <div class="row my-4">
             <div class="col text-center">
                 <h3 id="income_and_vat"></h3>
                 <p id="income_and_vat_note" ></p>

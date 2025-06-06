@@ -143,24 +143,24 @@ function getVAT(event) {
 function getSpending(tax) {
 
   const spending_data_22_23 = {
-    "health" : (0.183 * tax),
-    "social security (pensioners)" : (0.122 * tax),
-    "social security (working age and children)" : (0.102 * tax),
-    "education" : (0.091 * tax),
-    "net debt interest" : (0.084 * tax),
-    "defence" : (0.048 * tax),
-    "transport" : (0.038 * tax),
-    "public order and safety" : (0.038 * tax),
-    "long-term care" : (0.024 * tax),
-    "housing and community amenities" : (0.015 * tax),
-    "overseas aid" : (0.011 * tax),
-    "other" : (0.24 * tax)
+    "Health" : (0.183 * tax),
+    "Social security (pensioners)" : (0.122 * tax),
+    "Social security (working age and children)" : (0.102 * tax),
+    "Education" : (0.091 * tax),
+    "Net debt interest" : (0.084 * tax),
+    "Defence" : (0.048 * tax),
+    "Transport" : (0.038 * tax),
+    "Public Order and Safety" : (0.038 * tax),
+    "Long-term care" : (0.024 * tax),
+    "Housing and Community amenities" : (0.015 * tax),
+    "Overseas Aid" : (0.011 * tax),
+    "Other" : (0.24 * tax)
   }
 
   const spending_data = {
     labels: Object.keys(spending_data_22_23),
     datasets: [{
-      label: 'tax',
+      label: '£',
       data: Object.values(spending_data_22_23),
       backgroundColor: [
     '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0',
@@ -194,3 +194,48 @@ document.getElementById("submit_vat").addEventListener('click', getVAT);
 
 const total_tax = document.getElementById("total_tax");
 const overall_tax_rate_element = document.getElementById("overall_tax_rate");
+
+/*
+// scroll logic
+
+const container = document.getElementById('scroll-container');
+const rows = document.querySelectorAll('.scroll-row');
+const upBtn = document.getElementById('scroll-up');
+const downBtn = document.getElementById('scroll-down');
+
+function getCurrentIndex() {
+return Math.round(container.scrollTop / window.innerHeight);
+}
+
+function updateArrows() {
+const index = getCurrentIndex();
+upBtn.style.display = index > 0 ? 'block' : 'none';
+downBtn.style.display = index < rows.length - 1 ? 'block' : 'none';
+}
+
+function scrollToRow(index) {
+container.scrollTo({
+    top: index * window.innerHeight,
+    behavior: 'smooth'
+});
+}
+
+upBtn.addEventListener('click', () => {
+const currentIndex = getCurrentIndex();
+if (currentIndex > 0) scrollToRow(currentIndex - 1);
+});
+
+downBtn.addEventListener('click', () => {
+const currentIndex = getCurrentIndex();
+if (currentIndex < rows.length - 1) scrollToRow(currentIndex + 1);
+});
+
+container.addEventListener('scroll', () => {
+clearTimeout(container._scrollTimeout);
+container._scrollTimeout = setTimeout(updateArrows, 100);
+});
+
+// On load
+updateArrows();
+
+*/

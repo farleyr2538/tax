@@ -1,8 +1,9 @@
-/* */
+/* div blueprint lines 
 div {
   outline: blue dotted;
   outline-width: 1px;
 }
+*/
 
 p {
     margin-top: 0px;
@@ -37,6 +38,7 @@ html, body {
 
 .scroll-container {
   height: 100vh;
+  width: 100vw;
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
   position: relative;
