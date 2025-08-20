@@ -11,9 +11,16 @@ let overall_tax_rate = 0;
 
 let pieChart = null;
 
+// add event listeners
+document.getElementById("submit_income").addEventListener('click', getIncome);
+document.getElementById("submit_vat").addEventListener('click', getVAT);
+
+const total_tax = document.getElementById("total_tax");
+const overall_tax_rate_element = document.getElementById("overall_tax_rate");
+
 function getIncome(event) {
   
-    //pieChart.setAttribute('height', '100');
+    // pieChart.setAttribute('height', '100');
 
     event.preventDefault(); // Prevent the form from submitting
     const income_element = document.getElementById("income");
@@ -39,6 +46,7 @@ function getIncome(event) {
         });
         pieChart.update()
     } else {
+      console.log("chart is null. creating chart...")
       // create chart
         const tax_data = {
           labels: ['take-home pay', 'income tax', 'national insurance'],
@@ -188,12 +196,6 @@ function getSpending(tax) {
   let spending_chart = document.getElementById('spendingChart').getContext('2d');
   spending_chart = new Chart(spending_chart, spending_config);
 }
-
-document.getElementById("submit_income").addEventListener('click', getIncome);
-document.getElementById("submit_vat").addEventListener('click', getVAT);
-
-const total_tax = document.getElementById("total_tax");
-const overall_tax_rate_element = document.getElementById("overall_tax_rate");
 
 /*
 // scroll logic
